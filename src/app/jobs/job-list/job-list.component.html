@@ -1,0 +1,19 @@
+<div class="books-list-container">
+    <div class="books-list-title clearfix">
+        <h4>Jobs</h4>
+        <a routerLink="/jobs/new">
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">New Job</button>
+        </a>
+    </div>
+    <div class="books-list-content-container clearfix">
+        <div class="book-card mdl-card mdl-shadow--2dp" *ngFor="let job of jobs">
+        <h1>{{job.job_key}}</h1>
+        <div class="mdl-card__actions">
+            <!--<a class="mdl-button mdl-button&#45;&#45;colored mdl-js-button mdl-js-ripple-effect" [routerLink]="['/books', book.id]">-->
+            <!--View Book-->
+            <!--</a>-->
+        </div>
+        </div>
+    </div>
+</div>
+      

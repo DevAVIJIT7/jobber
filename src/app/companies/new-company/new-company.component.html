@@ -1,0 +1,25 @@
+<section class="new-book-container">
+  <h4>Add Company</h4>
+
+  <form novalidate [formGroup]="newCompanyForm" (ngSubmit)="saveCompany()">
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <input class="mdl-textfield__input" type="text" id="name" formControlName="name">
+      <label class="mdl-textfield__label" for="title">Company Name</label>
+    </div>
+    <br/>
+
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <input class="mdl-textfield__input" type="text" id="acronym" formControlName="acronym">
+      <label class="mdl-textfield__label" for="authors">Acronym</label>
+    </div>
+
+    <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored"
+            [disabled]="newCompanyForm.invalid">
+      Save
+    </button>
+
+    <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" (click)="this.location.back()">
+      Cancel
+    </button>
+  </form>
+</section>

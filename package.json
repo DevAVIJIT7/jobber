@@ -8,10 +8,12 @@
     "start": "ng serve",
     "test": "ng test",
     "pree2e": "webdriver-manager update --standalone false --gecko false",
-    "e2e": "protractor"
+    "e2e": "protractor",
+    "build": "ng build && node server.js"
   },
   "private": true,
   "dependencies": {
+    "@agm/core": "^1.0.0-beta.1",
     "@angular/common": "^2.3.1",
     "@angular/compiler": "^2.3.1",
     "@angular/core": "^2.3.1",
@@ -20,13 +22,23 @@
     "@angular/platform-browser": "^2.3.1",
     "@angular/platform-browser-dynamic": "^2.3.1",
     "@angular/router": "^3.3.1",
+    "angular-google-places-autocomplete": "^0.2.9",
+    "assert": "^1.4.1",
+    "body-parser": "^1.17.2",
+    "cookie-parser": "~1.4.3",
     "core-js": "^2.4.1",
+    "debug": "~2.6.3",
+    "express": "^4.15.4",
+    "mongoose": "^4.9.4",
+    "mongoose-currency": "^0.2.0",
+    "morgan": "~1.8.1",
     "rxjs": "^5.0.1",
     "ts-helpers": "^1.1.1",
     "zone.js": "^0.7.2"
   },
   "devDependencies": {
     "@angular/compiler-cli": "^2.3.1",
+    "@types/googlemaps": "^3.26.20",
     "@types/jasmine": "2.5.38",
     "@types/node": "^6.0.42",
     "angular-cli": "1.0.0-beta.28.3",

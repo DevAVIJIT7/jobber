@@ -8,6 +8,8 @@ import { MapsAPILoader } from '@agm/core';
 import { Job } from '../job';
 import { JobsService } from '../jobs.service';
 
+declare var $: any;
+
 @Component({
   selector: 'new-job',
   templateUrl: './new-job.component.html',
@@ -23,6 +25,8 @@ export class NewJobComponent implements OnInit {
   
   @ViewChild("search")
   public searchElementRef: ElementRef;
+  @ViewChild("proposed_start_at")
+  public startDateElementRef: ElementRef;
 
   constructor(private formBuilder: FormBuilder,
               private router: Router,
@@ -33,6 +37,10 @@ export class NewJobComponent implements OnInit {
   }
   
   ngOnInit() {
+    // set datetime picker
+    //console.log(this.startDateElementRef.nativeElement.id);
+    $(this.startDateElementRef.nativeElement).datetimepicker();
+    //.datetimepicker();
     //set google maps defaults
     this.zoom = 4;
     this.latitude = 39.8282;
@@ -74,6 +82,10 @@ export class NewJobComponent implements OnInit {
       end_location: ['', Validators.required],
       proposed_end_at: ['', Validators.required]
     });
+  }
+
+  ngAfterViewInit() {
+    
   }
 
 

@@ -1,51 +1,43 @@
 <section class="new-book-container">
-    <h4>Add Job</h4>
-  
-    <form novalidate [formGroup]="newJobForm" (ngSubmit)="saveJob()">
-      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-        <input class="mdl-textfield__input" type="text" id="job_key" formControlName="job_key">
-        <label class="mdl-textfield__label" for="title">Job Key</label>
-      </div>
-      <br/>
-  
-      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-        <input class="mdl-textfield__input" type="text" id="start_location" formControlName="start_location">
-        <label class="mdl-textfield__label" for="start_location">Start Location</label>
-      </div>
-      <br/>
+  <h4>Add Job</h4>
 
-      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-        <input class="mdl-textfield__input" type="text" id="end_location" formControlName="end_location">
-        <label class="mdl-textfield__label" for="end_location">End Location</label>
-      </div>
-      <br/>
-      
-      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-        <input type='text' class="form-control" id='proposed_start_at' formControlName="proposed_start_at" #proposed_start_at/>
-        <label class="mdl-textfield__label" for="proposed_start_at">Start Time</label>
-      </div>
-      <br/>
-   
-      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-        <input class="timepicker" type="text" id="proposed_end_at" formControlName="proposed_end_at">
-        <label class="mdl-textfield__label" for="proposed_end_at">End Time</label>
-      </div>
-      <br/>
-      <div class="form-group">
-        <input placeholder="search for location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search [formControl]="searchControl">
-      </div>
-      <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
-        <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
-      </agm-map>
-      <material-datepicker [(date)]="proposed_end_at"></material-datepicker> 
-      <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored"
-              [disabled]="newJobForm.invalid">
-        Save
-      </button>
-  
-      <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" (click)="this.location.back()">
-        Cancel
-      </button>
-    </form>
-  </section>
+  <form novalidate [formGroup]="newJobForm" (ngSubmit)="saveJob()">
+    <div class="form-group">
+      <label for="job_key">Job Key</label>
+      <input type='text' class="form-control" id='job_key' formControlName="job_key"/>
+    </div>
+    <br/>
+
+    <div class="form-group">
+      <label for="start_location">Start Location</label>
+      <input type='text' class="form-control" id='start_location' autocorrect="off" autocapitalize="off" spellcheck="off" formControlName="start_location" #start_location/>
+    </div>
+    <br/>
+
+    <div class="form-group">
+      <label for="end_location">End Location</label>
+      <input type='text' class="form-control" id='end_location' autocorrect="off" autocapitalize="off" spellcheck="off" formControlName="end_location" #end_location/>
+    </div>
+    <br/>
+    
+    <div class="form-group">
+      <label for="proposed_start_at">Start Time</label>
+      <input type='text' class="form-control" id='proposed_start_at' formControlName="proposed_start_at" #proposed_start_at/>
+    </div>
+    <br/>
+    <div class="form-group">
+      <label for="proposed_end_at">End Time</label>
+      <input type='text' class="form-control" id='proposed_end_at' formControlName="proposed_end_at" #proposed_end_at/>
+    </div>
+    <br/>
+    
+    <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
+      <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+    </agm-map>
+    <br/>
+    <!-- <button type="submit" class="btn btn-success"  [disabled]="newJobForm.invalid">Save</button> -->
+    <button type="submit" class="btn btn-success">Save</button>
+    <button type="submit" class="btn btn-danger" (click)="this.location.back()">Cancel</button>
+  </form>
+</section>
   

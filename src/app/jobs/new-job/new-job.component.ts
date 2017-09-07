@@ -23,10 +23,14 @@ export class NewJobComponent implements OnInit {
   public searchControl: FormControl;
   public zoom: number;
   
-  @ViewChild("search")
-  public searchElementRef: ElementRef;
+  @ViewChild("start_location")
+  public startLocationElementRef: ElementRef;
+  @ViewChild("end_location")
+  public endLocationElementRef: ElementRef;
   @ViewChild("proposed_start_at")
   public startDateElementRef: ElementRef;
+  @ViewChild("proposed_end_at")
+  public endDateElementRef: ElementRef;
 
   constructor(private formBuilder: FormBuilder,
               private router: Router,
@@ -37,10 +41,6 @@ export class NewJobComponent implements OnInit {
   }
   
   ngOnInit() {
-    // set datetime picker
-    //console.log(this.startDateElementRef.nativeElement.id);
-    $(this.startDateElementRef.nativeElement).datetimepicker();
-    //.datetimepicker();
     //set google maps defaults
     this.zoom = 4;
     this.latitude = 39.8282;
@@ -54,13 +54,35 @@ export class NewJobComponent implements OnInit {
 
     //load Places Autocomplete
     this.mapsAPILoader.load().then(() => {
-      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
+      let autocomplete1 = new google.maps.places.Autocomplete(this.startLocationElementRef.nativeElement, {
         types: ["address"]
       });
-      autocomplete.addListener("place_changed", () => {
+
+      let autocomplete2 = new google.maps.places.Autocomplete(this.endLocationElementRef.nativeElement, {
+        types: ["address"]
+      });
+
+      autocomplete1.addListener("place_changed", () => {
         this.ngZone.run(() => {
           //get the place result
-          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+          let place: google.maps.places.PlaceResult = autocomplete1.getPlace();
+
+          //verify result
+          if (place.geometry === undefined || place.geometry === null) {
+            return;
+          }
+
+          //set latitude, longitude and zoom
+          this.latitude = place.geometry.location.lat();
+          this.longitude = place.geometry.location.lng();
+          this.zoom = 12;
+        });
+      });
+
+      autocomplete2.addListener("place_changed", () => {
+        this.ngZone.run(() => {
+          //get the place result
+          let place: google.maps.places.PlaceResult = autocomplete2.getPlace();
 
           //verify result
           if (place.geometry === undefined || place.geometry === null) {
@@ -85,11 +107,15 @@ export class NewJobComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    
+    // set datetime picker
+    //console.log(this.startDateElementRef.nativeElement.id);
+    $(this.startDateElementRef.nativeElement).datetimepicker({format: 'YYYY-MM-DD LT'});
+    $(this.endDateElementRef.nativeElement).datetimepicker({format: 'YYYY-MM-DD LT'});
   }
 
 
   saveJob() {
+    console.log(this.newJobForm.value);
     if (this.newJobForm.valid) {
       var job = this.newJobForm.value as Job;
       this.jobService.addJob(job)

@@ -115,6 +115,10 @@ export class NewJobComponent implements OnInit {
 
 
   saveJob() {
+    this.newJobForm.get('proposed_start_at').setValue(this.startDateElementRef.nativeElement.value);
+    this.newJobForm.get('proposed_end_at').setValue(this.endDateElementRef.nativeElement.value);
+    this.newJobForm.get('start_location').setValue(this.startLocationElementRef.nativeElement.value);
+    this.newJobForm.get('end_location').setValue(this.endLocationElementRef.nativeElement.value);
     console.log(this.newJobForm.value);
     if (this.newJobForm.valid) {
       var job = this.newJobForm.value as Job;

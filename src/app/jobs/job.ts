@@ -1,8 +1,8 @@
 export class Job {
     job_key: string;
     status: number;
-    proposed_start_at: string;
-    proposed_end_at: string;
+    proposed_start_at: Date;
+    proposed_end_at: Date;
     actual_start_at: number;	
     actual_end_at: number;
     start_location: string;

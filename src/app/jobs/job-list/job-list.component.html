@@ -6,14 +6,32 @@
         </a>
     </div>
     <div class="books-list-content-container clearfix">
-        <div class="book-card mdl-card mdl-shadow--2dp" *ngFor="let job of jobs">
-        <h1>{{job.job_key}}</h1>
-        <div class="mdl-card__actions">
-            <!--<a class="mdl-button mdl-button&#45;&#45;colored mdl-js-button mdl-js-ripple-effect" [routerLink]="['/books', book.id]">-->
-            <!--View Book-->
-            <!--</a>-->
-        </div>
-        </div>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                <th>Job Key</th>
+                <th>Proposed Start Time</th>
+                <th>Proposed End Time</th>
+                <th>Start Location</th>
+                <th>End Location</th>
+                <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let job of jobs">
+                    <td>{{job.job_key}}</td>
+                    <td>{{job.proposed_start_at}}</td>
+                    <td>{{job.proposed_end_at}}</td>
+                    <td>{{job.start_location}}</td>
+                    <td>{{job.end_location}}</td>
+                    <td>
+                       <a [routerLink]="['/jobs', job._id]">View</a>
+                       <a routerLink="/jobs/new">Edit</a> 
+                       <a routerLink="/jobs/new">Delete</a> 
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>
       

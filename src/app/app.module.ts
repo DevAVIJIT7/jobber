@@ -19,6 +19,7 @@ import {
   JobsService,
   JobListComponent,
   NewJobComponent,
+  JobDetailComponent
 } from './jobs';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -30,6 +31,7 @@ const routes: Routes = [
   {path: 'companies/new', component: NewCompanyComponent},
   {path: 'jobs', component: JobListComponent},
   {path: 'jobs/new', component: NewJobComponent},
+  {path: 'jobs/:id', component: JobDetailComponent},
 ];
 
 @NgModule({
@@ -39,7 +41,8 @@ const routes: Routes = [
     CompanyListComponent,
     NewCompanyComponent,
     JobListComponent,
-    NewJobComponent
+    NewJobComponent,
+    JobDetailComponent
   ],
   imports: [
     AgmCoreModule.forRoot({

@@ -1,0 +1,29 @@
+<div *ngIf="job">
+  <div>{{ job.job_key}}</div>
+  <div>{{ job.proposed_start_at }}</div>
+  <div>{{ job.proposed_end_at }}</div>
+  <div>{{ job.start_location }}</div>
+  <div>{{ job.end_location }}</div>
+  <div>
+    <label>Job Key: </label>
+    <input [(ngModel)]="job.job_key" placeholder="job_key" />
+  </div>
+  <div>
+    <label>Proposed Start Time: </label>
+    <input [(ngModel)]="job.proposed_start_at" placeholder="proposed_start_at" />
+  </div>
+  <div>
+    <label>Proposed End Time: </label>
+    <input [(ngModel)]="job.proposed_end_at" placeholder="proposed_end_at" />
+  </div>
+  <div>
+    <label>Start Location: </label>
+    <input [(ngModel)]="job.start_location" placeholder="start_location" />
+  </div>
+  <div>
+    <label>End Location: </label>
+    <input [(ngModel)]="job.end_location" placeholder="end_location" />
+  </div>
+  <button (click)="goBack()">Back</button>
+  <button (click)="updateJob()">Save</button>             
+</div>    

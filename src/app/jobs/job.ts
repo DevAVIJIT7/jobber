@@ -1,4 +1,5 @@
 export class Job {
+    _id: string;
     job_key: string;
     status: number;
     proposed_start_at: Date;

@@ -15,7 +15,7 @@ export class JobsService {
   constructor(private http: Http) {
   }
 
-  getJob(id: number): Observable<Job> {
+  getJob(id: string): Observable<Job> {
     const url = `${this.baseUrl}${id}`;
     return this.http.get(url)
       .map(response => response.json() as Job);
@@ -31,6 +31,13 @@ export class JobsService {
     const url = `${this.baseUrl}`;
     const body = JSON.stringify(job);
     return this.http.post(url, body, {headers: this.headers})
+      .map(response => response.json());
+  }
+
+  updateJob(job: Job) {
+    const url = `${this.baseUrl}${job._id}`;
+    const body = JSON.stringify(job);
+    return this.http.put(url, body, {headers: this.headers})
       .map(response => response.json());
   }
 }
